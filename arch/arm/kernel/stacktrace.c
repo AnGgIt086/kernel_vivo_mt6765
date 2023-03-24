@@ -50,7 +50,6 @@ int notrace unwind_frame(struct stackframe *frame)
 	/* check current frame pointer is within bounds */
 	if (fp < low + 4 || fp > high - 4)
 		return -EINVAL;
-
 	frame->sp = frame->fp;
 	frame->fp = READ_ONCE_NOCHECK(*(unsigned long *)(fp));
 	frame->pc = READ_ONCE_NOCHECK(*(unsigned long *)(fp + 4));
